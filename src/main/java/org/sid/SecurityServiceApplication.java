@@ -28,6 +28,7 @@ public class SecurityServiceApplication {
             });
 
             accountService.addRoleToUser("admin","ADMIN");
+            accountService.addRoleToUser("user1","USER");
         };
    }
 

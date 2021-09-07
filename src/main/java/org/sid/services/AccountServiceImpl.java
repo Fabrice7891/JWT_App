@@ -8,6 +8,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
+import java.util.List;
+
 
 @Service
 @Transactional
@@ -55,4 +58,13 @@ public class AccountServiceImpl implements AccountService {
        AppRole appRole=appRoleRepository.findByRoleName(rolename);
        appUser.getRoles().add(appRole);
     }
+
+    @Override
+    public Collection<AppRole> getAllRolleByuser(String username) {
+        AppUser appUser= loadUserByUsername(username);
+        if(appUser==null) throw  new RuntimeException("Utilisateur introuvable");
+        return appUser.getRoles();
+    }
+
+
 }
